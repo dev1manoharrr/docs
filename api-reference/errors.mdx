@@ -1,0 +1,93 @@
+> Troubleshoot issues with detailed explanations of iSend error codes, meanings, and recommended fixes.
+
+## Error schema
+
+iSend uses standard HTTP status codes to indicate success or failure. Additional error types help identify the root cause and guide resolution.
+
+### `missing_api_key`
+
+* **Status:** 401  
+* **Message:** API key not provided in the request.  
+* **Suggested action:** Ensure the header `Authorization: Bearer YOUR_API_KEY` is included in the request.
+
+### `invalid_api_key`
+
+* **Status:** 403  
+* **Message:** The API key provided is invalid or expired.  
+* **Suggested action:** Double-check your key or generate a new one in your [iSend dashboard](https://www.isend.ai/dashboard).
+
+### `unauthorized_action`
+
+* **Status:** 403  
+* **Message:** Your API key does not have permission to perform this action.  
+* **Suggested action:** Verify the API key has full access or contact support for permission upgrade.
+
+### `validation_error`
+
+* **Status:** 400  
+* **Message:** One or more fields are missing or incorrectly formatted.  
+* **Suggested action:** Review the field-level error message to correct your request body.
+
+### `missing_required_field`
+
+* **Status:** 422  
+* **Message:** A required field is missing from the payload.  
+* **Suggested action:** Check the error details and include all required properties (`to`, `from`, `subject`, etc.).
+
+### `invalid_email_format`
+
+* **Status:** 422  
+* **Message:** The `to` or `from` email field is not in a valid format.  
+* **Suggested action:** Ensure the email address is in `user@example.com` or `Name <user@example.com>` format.
+
+### `invalid_template`
+
+* **Status:** 422  
+* **Message:** The specified template does not exist or is inactive.  
+* **Suggested action:** Confirm the template ID in your dashboard.
+
+### `invalid_data_mapping`
+
+* **Status:** 422  
+* **Message:** Data mapping provided does not match placeholders in the template.  
+* **Suggested action:** Verify keys in `data_mapping` align with your template variables.
+
+### `rate_limit_exceeded`
+
+* **Status:** 429  
+* **Message:** You have exceeded the request rate limit.  
+* **Suggested action:** Throttle your request rate or [contact support](https://www.isend.ai/contact) to request a rate increase.
+
+### `daily_quota_exceeded`
+
+* **Status:** 429  
+* **Message:** You've hit your daily send quota.  
+* **Suggested action:** Wait until the quota resets or upgrade your [plan](https://www.isend.ai/pricing).
+
+### `not_found`
+
+* **Status:** 404  
+* **Message:** Endpoint or resource not found.  
+* **Suggested action:** Check the URL or resource ID and try again.
+
+### `method_not_allowed`
+
+* **Status:** 405  
+* **Message:** HTTP method not allowed for this endpoint.  
+* **Suggested action:** Use the correct method (`POST`, `GET`, etc.) as per the API reference.
+
+### `conflict_request`
+
+* **Status:** 409  
+* **Message:** Duplicate request detected or idempotency conflict.  
+* **Suggested action:** Change your idempotency key or wait for the current request to complete.
+
+### `internal_server_error`
+
+* **Status:** 500  
+* **Message:** An unexpected server error occurred.  
+* **Suggested action:** Retry later. If the issue persists, check [status.isend.ai](https://status.isend.ai) or contact support.
+
+<Info>
+  For rate limit behavior, refer to the [rate limit guide](/api-reference/rate-limit). For questions or help, [contact support](https://www.isend.ai/contact).
+</Info>

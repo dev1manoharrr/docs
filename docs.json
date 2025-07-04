@@ -1,79 +1,67 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "iSend.ai Docs",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#000000",
+    "light": "#0a0c10",
+    "dark": "#0a0c10"
   },
   "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
-        "groups": [
+        "tab": "Docs",
+        "anchors": [
           {
-            "group": "Get Started",
+            "anchor": "Documentation",
+            "icon": "book-open",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              {
+                "group": "Documentation",
+                "pages": ["index"]
+              },
+              {
+                "group": "Quickstart",
+                "pages": [
+                  {
+                    "group": "Node.js",
+                    "pages": ["quickstart/node/introduction"]
+                  },
+                  {
+                    "group": "Serverless",
+                    "pages": ["quickstart/serverless/introduction"]
+                  },
+                  {
+                    "group": "PHP",
+                    "pages": ["quickstart/php/introduction", "quickstart/php/laravel", "quickstart/php/symfony"]
+                  }
+                ]
+              }
             ]
           },
           {
-            "group": "Essentials",
+            "anchor": "API Reference",
+            "icon": "square-terminal",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API Reference",
-        "groups": [
-          {
-            "group": "API Documentation",
-            "pages": [
-              "api-reference/introduction"
+              {
+                "group": "API Reference",
+                "pages": ["api-reference/introduction", "api-reference/errors", "api-reference/rate-limit"]
+              },
+              {
+                "group": "Email",
+                "pages": ["api-reference/emails/get"]
+              }
             ]
           },
           {
-            "group": "Endpoint Examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
+            "anchor": "Knowledge Base",
+            "icon": "book",
+            "pages": ["knowledge-base/intro", "knowledge-base/faq", "knowledge-base/troubleshooting"]
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",

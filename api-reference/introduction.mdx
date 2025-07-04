@@ -1,33 +1,57 @@
----
-title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
----
+> Learn how to authenticate, structure requests, and understand standard responses from the iSend API.
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
+## Base URL
 
-## Welcome
+The iSend API follows **RESTful** principles and requires all traffic over **HTTPS**. Requests over HTTP are not supported and will be rejected.
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+All API requests should be made to:
 
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+https://www.isend.ai
+
 
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+To authenticate, include your API key in the `Authorization` header using the **Bearer** scheme. You can generate or manage your API keys from your [iSend Dashboard](https://www.isend.ai/dashboard).
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
-```
+
+Make sure to **keep your API key secret**. Treat it like a password.
+
+## Response Codes
+
+The iSend API uses standard HTTP response codes to communicate success or failure:
+
+| Status | Description                              |
+|--------|------------------------------------------|
+| `200`  | Email sent successfully.                 |
+| `400`  | Bad request. Missing or invalid data.    |
+| `401`  | Unauthorized. Invalid or missing API key.|
+| `403`  | Forbidden. You do not have access.       |
+| `404`  | Endpoint or resource not found.          |
+| `429`  | Too many requests. Rate limit exceeded.  |
+| `5xx`  | Server error on iSend’s side.            |
+
+<Info>
+  Refer to [Error Codes](/api-reference/errors) for detailed information on possible response errors and troubleshooting steps.
+</Info>
+
+## Rate Limiting
+
+By default, you are limited to **2 requests per second**. If you require a higher rate limit, please contact the iSend team.
+
+Requests exceeding the rate limit will return a `429 Too Many Requests` error.
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="How are templates managed?">
+    Templates are defined and managed in your iSend dashboard. API calls reference the template by its identifier.
+  </Accordion>
+
+  <Accordion title="Do you support custom data in templates?">
+    Yes. Use the `data_mapping` field in your API request to inject dynamic values into your email templates.
+  </Accordion>
+
+  <Accordion title="How do you handle API versioning?">
+    Currently, the API is unversioned. Future updates will include explicit versioning in the URL path or headers.
+  </Accordion>
+</AccordionGroup>

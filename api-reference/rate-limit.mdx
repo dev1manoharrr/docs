@@ -1,0 +1,40 @@
+> Understand iSend's rate limiting policy and how to optimize or increase your limits.
+
+iSend applies standard HTTP rate limiting headers in every response, following the [IETF rate-limit specification](https://datatracker.ietf.org/doc/html/draft-ietf-httpapi-ratelimit-headers).
+
+| Header name           | Description                                                         |
+|-----------------------|---------------------------------------------------------------------|
+| `ratelimit-limit`     | Maximum number of requests allowed within the current window.       |
+| `ratelimit-remaining` | Number of requests remaining before hitting the limit.              |
+| `ratelimit-reset`     | Seconds remaining until the limit resets.                           |
+| `retry-after`         | Seconds to wait before retrying once the rate limit has been hit.   |
+
+---
+
+## Default Limit
+
+The default rate limit is **2 requests per second** for all API clients.
+
+Exceeding this threshold results in a `429 Too Many Requests` response. You can monitor this via the headers above or programmatically handle it in your client.
+
+<Info>
+Need more throughput? [Contact support](https://www.isend.ai/contact) to request a higher rate limit.
+</Info>
+
+---
+
+## Best Practices
+
+- **Queue requests**: Use background workers or task queues to regulate outbound requests.
+- **Retry with delay**: Respect the `retry-after` header before re-attempting failed calls.
+- **Avoid burst traffic**: Spread requests over time instead of sending large bursts.
+
+---
+
+## View 429 Errors
+
+To investigate requests blocked by rate limiting, check the **Logs** section in your [iSend Dashboard](https://www.isend.ai/dashboard/logs?status=429).
+
+---
+
+Let me know if you'd like a YAML/JSON example for handling 429s in a retry strategy or want this linked in your `docs.json`.
