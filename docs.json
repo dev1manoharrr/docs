@@ -8,61 +8,51 @@
     "dark": "#0a0c10"
   },
   "favicon": "/favicon.svg",
-  "navigation": {
-    "tabs": [
+"navigation": {
+    "anchors": [
       {
-        "tab": "Docs",
-        "anchors": [
+        "anchor": "Documentation",
+        "icon": "book-open",
+        "pages": [
           {
-            "anchor": "Documentation",
-            "icon": "book-open",
+            "group": "Documentation",
+            "pages": ["index"]
+          },
+          {
+            "group": "Quickstart",
             "pages": [
               {
-                "group": "Documentation",
-                "pages": ["index"]
-              },
-              {
-                "group": "Quickstart",
+                "group": "PHP",
                 "pages": [
-                  {
-                    "group": "Node.js",
-                    "pages": ["quickstart/node/introduction"]
-                  },
-                  {
-                    "group": "Serverless",
-                    "pages": ["quickstart/serverless/introduction"]
-                  },
-                  {
-                    "group": "PHP",
-                    "pages": ["quickstart/php/introduction", "quickstart/php/laravel", "quickstart/php/symfony"]
-                  }
+                  "quickstart/php/introduction",
+                  "quickstart/php/laravel",
+                  "quickstart/php/symfony"
                 ]
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "anchor": "API Reference",
+        "icon": "square-terminal",
+        "pages": [
           {
-            "anchor": "API Reference",
-            "icon": "square-terminal",
+            "group": "API Reference",
             "pages": [
-              {
-                "group": "API Reference",
-                "pages": ["api-reference/introduction", "api-reference/errors", "api-reference/rate-limit"]
-              },
-              {
-                "group": "Email",
-                "pages": ["api-reference/emails/get"]
-              }
+              "api-reference/introduction",
+              "api-reference/errors",
+              "api-reference/rate-limit"
             ]
           },
           {
-            "anchor": "Knowledge Base",
-            "icon": "book",
-            "pages": ["knowledge-base/intro", "knowledge-base/faq", "knowledge-base/troubleshooting"]
+            "group": "Email",
+            "pages": ["api-reference/emails/get"]
           }
         ]
       }
     ]
-  },
+  } ,
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"

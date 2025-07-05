@@ -2,35 +2,57 @@
 title: 'Send Email'
 openapi: 'POST /api/send-email'
 ---
+# Send Email
 
-Use this endpoint to send a templated email with dynamic data mapping.
+> Send templated emails through the iSend API using dynamic placeholders with a single API call.
 
-## Request Body
+## Body Parameters
 
-The request must include the following fields:
+- **from** (string, required): Sender's email address. Can include a friendly name (`"Your Name <you@example.com>"`).
+- **to** (string or array, required): Recipient's email address. Can be a single email or an array.
+- **template** (string, required): The identifier of the template to be used for this email.
+- **data_mapping** (object, required): Key-value pairs to inject into the template placeholders dynamically.
 
-| Field         | Type     | Required | Description                                             |
-|---------------|----------|----------|---------------------------------------------------------|
-| `api_key`     | string   | ✅       | Your iSend.ai API key for authentication               |
-| `to`          | string   | ✅       | Recipient's email address                              |
-| `from`        | string   | ✅       | Sender's email address                                 |
-| `subject`     | string   | ✅       | Subject line of the email                              |
-| `template`    | string   | ✅       | Template name to use                                   |
-| `data_mapping`| object   | ✅       | Key-value pairs used to populate the email template     |
+## Headers
 
-### Example Request
+- **Authorization** (string, required): Bearer token using your API key. Example: `Authorization: Bearer is_xxxxxxx`
+- **Content-Type**: `application/json`
 
-```bash
-curl -X POST https://www.isend.ai/api/send-email \
-  -H "Content-Type: application/json" \
-  -d '{
-    "api_key": "YOUR_API_KEY",
-    "to": "delivered@resend.dev",
-    "from": "bramu.ss@gmail.com",
-    "subject": "hello world",
-    "template": "welcome_emailer",
-    "data_mapping": {
-      "name": "John Doe",
-      "email": "john@example.com"
-    }
-  }'
+## PHP Example
+
+```php
+<?php
+$client = new isend('YOUR_API_KEY');
+$client->emails->send([
+  'from' => 'your@email.com',
+  'to' => 'delivered@isend.dev',
+  'template' => 'welcome_emailer',
+  'data_mapping' => [
+    'name' => 'John Doe',
+    'email' => 'john@example.com'
+  ]
+]);
+```
+
+## Sample Request
+
+```json
+{
+  "from": "your@email.com",
+  "to": "delivered@isend.dev",
+  "template": "welcome_emailer",
+  "data_mapping": {
+    "name": "John Doe",
+    "email": "john@example.com"
+  }
+}
+```
+
+## Sample Response
+
+```json
+{
+  "id": "abc1234-def5-6789-xyz-00000000",
+  "status": "success"
+}
+```

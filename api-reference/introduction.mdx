@@ -1,57 +1,63 @@
-> Learn how to authenticate, structure requests, and understand standard responses from the iSend API.
+# Introduction
+
+> Learn how to authenticate and interact with the isend.ai API, including base URL, headers, error codes, and limits.
 
 ## Base URL
 
-The iSend API follows **RESTful** principles and requires all traffic over **HTTPS**. Requests over HTTP are not supported and will be rejected.
+All requests to the isend.ai API must use **HTTPS** and follow RESTful conventions.
 
-All API requests should be made to:
+**Base URL:**
 
-https://www.isend.ai
+```
+https://api.isend.ai
+```
 
+Requests over plain HTTP are rejected for security reasons.
 
 ## Authentication
 
-To authenticate, include your API key in the `Authorization` header using the **Bearer** scheme. You can generate or manage your API keys from your [iSend Dashboard](https://www.isend.ai/dashboard).
+Authenticate your requests by including your **API key** in the `Authorization` header using the Bearer token format.
 
+```
+Authorization: Bearer is_xxxxxxxxxxxxxxxxxxxxx
+```
 
-Make sure to **keep your API key secret**. Treat it like a password.
+You can [generate an API key](/settings/api-keys) from the isend.ai dashboard.
 
 ## Response Codes
 
-The iSend API uses standard HTTP response codes to communicate success or failure:
+The API uses standard HTTP status codes to indicate the result of requests.
 
-| Status | Description                              |
-|--------|------------------------------------------|
-| `200`  | Email sent successfully.                 |
-| `400`  | Bad request. Missing or invalid data.    |
-| `401`  | Unauthorized. Invalid or missing API key.|
-| `403`  | Forbidden. You do not have access.       |
-| `404`  | Endpoint or resource not found.          |
-| `429`  | Too many requests. Rate limit exceeded.  |
-| `5xx`  | Server error on iSend’s side.            |
+| Status | Description                             |
+|--------|-----------------------------------------|
+| `200`  | The request was successful.             |
+| `400`  | Invalid request. Check your parameters. |
+| `401`  | Missing or malformed API key.           |
+| `403`  | API key is invalid or unauthorized.     |
+| `404`  | Resource not found.                     |
+| `429`  | Rate limit exceeded.                    |
+| `5xx`  | Server-side error. Try again later.     |
 
 <Info>
-  Refer to [Error Codes](/api-reference/errors) for detailed information on possible response errors and troubleshooting steps.
+  For a detailed list of possible API errors, see [Error Codes](/api-reference/errors).
 </Info>
 
-## Rate Limiting
+## Rate Limits
 
-By default, you are limited to **2 requests per second**. If you require a higher rate limit, please contact the iSend team.
+The default rate limit is **2 requests per second** per API key. If your integration requires a higher limit, [contact support](/support) to request an increase.
 
-Requests exceeding the rate limit will return a `429 Too Many Requests` error.
+When you exceed the rate limit, you’ll receive a `429 Too Many Requests` error.
+
+More details: [Rate Limits](/api-reference/rate-limit)
 
 ## FAQ
 
 <AccordionGroup>
-  <Accordion title="How are templates managed?">
-    Templates are defined and managed in your iSend dashboard. API calls reference the template by its identifier.
+  <Accordion title="How does pagination work with the API?">
+    Currently, our API endpoints do not support pagination. As we expand our dataset capabilities, pagination will be introduced.
   </Accordion>
 
-  <Accordion title="Do you support custom data in templates?">
-    Yes. Use the `data_mapping` field in your API request to inject dynamic values into your email templates.
-  </Accordion>
-
-  <Accordion title="How do you handle API versioning?">
-    Currently, the API is unversioned. Future updates will include explicit versioning in the URL path or headers.
+  <Accordion title="Is the API versioned?">
+    Not yet. All requests default to the current version. Versioning will be added via headers in future releases.
   </Accordion>
 </AccordionGroup>

@@ -17,9 +17,9 @@
         "description": "Sends a templated email to a recipient using dynamic data.",
         "x-codeSamples": [
           {
-            "lang": "Node.js",
-            "label": "Node.js",
-            "source": "const axios = require('axios');\n\naxios.post('https://www.isend.ai/api/send-email', {\n  api_key: 'YOUR_API_KEY',\n  to: 'delivered@resend.dev',\n  from: 'bramu.ss@gmail.com',\n  subject: 'hello world',\n  template: 'welcome_emailer',\n  data_mapping: {\n    name: 'John Doe',\n    email: 'john@example.com'\n  }\n}).then(response => {\n  console.log(response.data);\n}).catch(error => {\n  console.error(error);\n});"
+            "lang": "PHP",
+            "label": "PHP",
+            "source": "<?php\n$client = new isend('YOUR_API_KEY');\n$client->emails->send([\n  'from' => 'your@email.com',\n  'to' => 'delivered@isend.dev',\n  'template' => 'welcome_emailer',\n  'data_mapping' => [\n    'name' => 'John Doe',\n    'email' => 'john@example.com'\n  ]\n]);"
           }
         ],
         "requestBody": {
@@ -28,7 +28,13 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["api_key", "to", "from", "subject", "template", "data_mapping"],
+                "required": [
+                  "api_key",
+                  "to",
+                  "from",
+                  "template",
+                  "data_mapping"
+                ],
                 "properties": {
                   "api_key": {
                     "type": "string",
@@ -43,10 +49,6 @@
                     "type": "string",
                     "format": "email",
                     "description": "Sender email address"
-                  },
-                  "subject": {
-                    "type": "string",
-                    "description": "Subject line of the email"
                   },
                   "template": {
                     "type": "string",
@@ -67,9 +69,8 @@
               },
               "example": {
                 "api_key": "is_b867c3390755d64915c563923484a6",
-                "to": "delivered@resend.dev",
-                "from": "bramu.ss@gmail.com",
-                "subject": "hello world",
+                "to": "delivered@isend.dev",
+                "from": "your@email.com",
                 "template": "welcome_emailer",
                 "data_mapping": {
                   "name": "John Doe",
@@ -107,7 +108,9 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "error": { "type": "string" }
+                    "error": {
+                      "type": "string"
+                    }
                   }
                 }
               }
