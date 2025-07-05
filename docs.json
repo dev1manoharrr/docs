@@ -7,7 +7,7 @@
       "og:title": "iSend.ai Docs – Developer API for Email Delivery",
       "og:type": "website",
       "og:url": "https://docs.isend.ai",
-      "og:image": "https://github.com/dev1manoharrr/isend-assets/blob/main/branding/logo-w-bg.jpg?raw=true",
+      "og:image": "images/logo-w-bg.jpg",
       "og:description": "Explore the iSend API and SDKs to integrate reliable email delivery into your apps.",
       "og:site_name": "iSend.ai"
     }
