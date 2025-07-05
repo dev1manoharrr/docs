@@ -16,7 +16,7 @@
         "pages": [
           {
             "group": "Documentation",
-            "pages": ["index"]
+            "pages": ["introduction"]
           },
           {
             "group": "Quickstart",
