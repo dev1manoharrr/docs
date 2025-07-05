@@ -1,4 +1,3 @@
-# Introduction
 
 > Learn how to authenticate and interact with the isend.ai API, including base URL, headers, error codes, and limits.
 
@@ -29,7 +28,7 @@ You can [generate an API key](/settings/api-keys) from the isend.ai dashboard.
 The API uses standard HTTP status codes to indicate the result of requests.
 
 | Status | Description                             |
-|--------|-----------------------------------------|
+| ------ | --------------------------------------- |
 | `200`  | The request was successful.             |
 | `400`  | Invalid request. Check your parameters. |
 | `401`  | Missing or malformed API key.           |
@@ -56,7 +55,6 @@ More details: [Rate Limits](/api-reference/rate-limit)
   <Accordion title="How does pagination work with the API?">
     Currently, our API endpoints do not support pagination. As we expand our dataset capabilities, pagination will be introduced.
   </Accordion>
-
   <Accordion title="Is the API versioned?">
     Not yet. All requests default to the current version. Versioning will be added via headers in future releases.
   </Accordion>
