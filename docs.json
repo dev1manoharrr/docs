@@ -4,7 +4,7 @@
   "name": "iSend.ai Docs",
   "seo": {
     "metatags": {
-      "og:image": "https://mintlify.s3.us-west-1.amazonaws.com/isend-b3e6ef7d/logo/light.svg"
+      "og:image": "images/logo-w-bg.svg"
     }
   },
   "colors": {
